@@ -1,27 +1,19 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 class Member(AbstractUser):
+    username = models.CharField(max_length=30, unique=True)
     first_name=models.CharField(max_length=50, blank = False)
     last_name=models.CharField(max_length=50, blank = False)
     email = models.EmailField(unique=True, blank=False)
     bio = models.CharField(max_length=520, blank=True)
-    novice = 6
-    beginner = 5
-    intermediate = 4
-    intermediate2 = 3
-    advanced = 2
-    expert = 1
-    level_choices = (
-        (novice, 'Novice'),
-        (beginner, 'Beginner'),
-        (intermediate, 'Intermediate'),
-        (intermediate2, 'Intermediate2'),
-        (advanced, 'Advanced'),
-        (expert, 'Expert'),
+    experience_level = models.IntegerField(
+        default=3,
+        unique=False,
+        validators= [MinValueValidator(1),MaxValueValidator(6)]
     )
-    experience_level = models.IntegerField(choices=level_choices, blank=True, null=True)
     personal_statement = models.CharField(max_length=520, blank=True)
     
     def full_name(self):
