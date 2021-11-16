@@ -21,7 +21,7 @@ class Member(AbstractUser):
         (advanced, 'Advanced'),
         (expert, 'Expert'),
     )
-    experience_level = models.IntegerField(choices=level_choices, blank=False, null=False)
+    experience_level = models.IntegerField(choices=level_choices, blank=True, null=True)
     personal_statement = models.CharField(max_length=520, blank=True)
     
     def full_name(self):
