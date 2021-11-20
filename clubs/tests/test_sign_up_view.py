@@ -34,7 +34,7 @@ class SignUpViewTestCase(TestCase):
         self.assertFalse(form.is_bound)
     
     def test_unsuccessful_sign_up(self):
-        self.form_input['username'] = 'BAD_USERNAME'
+        self.form_input['email'] = '@example.org'
         before_count = Member.objects.count()
         response = self.client.post(self.url, self.form_input)
         after_count = Member.objects.count()
