@@ -4,6 +4,11 @@ from clubs.models import Member
 from django.core.validators import RegexValidator
 
 
+class LogInForm(forms.Form):
+    """Form enabling registered users to log in."""
+
+    email = forms.CharField(label="email")
+    password = forms.CharField(label="Password", widget=forms.PasswordInput())
 class SignUpForm(forms.ModelForm):
     class Meta:
         model = Member
