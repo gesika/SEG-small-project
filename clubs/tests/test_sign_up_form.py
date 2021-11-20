@@ -67,16 +67,16 @@ class SignUpFormTestCase(TestCase):
         form = SignUpForm(data=self.form_input)
         self.assertFalse(form.is_valid())
         
-    """def test_form_must_save_correctly(self):
+    def test_form_must_save_correctly(self):
         form = SignUpForm(data=self.form_input)
         before_count = Member.objects.count()
         form.save()
         after_count = Member.objects.count()
         self.assertEqual(after_count, before_count+1)
-        user = Member.objects.get(username='@janedoe')
+        user = Member.objects.get(username='janedoe')
         self.assertEqual(user.first_name, 'Jane')
         self.assertEqual(user.last_name, 'Doe')
         self.assertEqual(user.email, 'janedoe@example.org')
-        self.assertEqual(user.bio, 'My bio')
+        self.assertEqual(user.bio, 'This is my bio')
         is_password_correct = check_password('Password123', user.password)
-        self.assertTrue(is_password_correct)"""
+        self.assertTrue(is_password_correct)
