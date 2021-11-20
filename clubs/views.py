@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from clubs.forms import SignUpForm
+from clubs.forms import LogInForm, SignUpForm
 
 # Create your views here.
 
@@ -8,7 +8,8 @@ def feed(request):
     return render(request, 'feed.html')
 
 def log_in(request):
-    return render(request, 'log_in.html')
+    form = LogInForm()
+    return render(request, 'log_in.html', {'form': form})
 
 def home(request):
     return render(request, 'home.html')

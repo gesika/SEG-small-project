@@ -4,6 +4,10 @@
 </Head>
     <body>
         <h1>Feed<h1>
-        <p><b>UNDER CONSTRUCTION</b>This page will contain member log in view</p>
+        <form action="{% url 'log_in' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Log in">
+        </form>
     </body>
 </html>
