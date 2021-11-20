@@ -10,6 +10,7 @@ class MemberModelTestCase(TestCase):
             first_name = 'John',
             last_name = 'Doe',
             email = 'johndoe@example.org',
+            password = 'Password123',
             bio = 'This is my bio',
             experience_level = 6,
             personal_statement = 'This is my personal statement'
