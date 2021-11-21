@@ -3,7 +3,7 @@
     <title>Chess CLub</title>
 </Head>
     <body>
-        <h1>Feed<h1>
+        <h1>Log In<h1>
         <form action="{% url 'log_in' %}" method="post">
             {% csrf_token %}
             {{ form.as_p }}

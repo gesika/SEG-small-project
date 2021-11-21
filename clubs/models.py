@@ -15,6 +15,9 @@ class Member(AbstractUser):
         validators= [MinValueValidator(1),MaxValueValidator(6)]
     )
     personal_statement = models.CharField(max_length=520, blank=True)
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
     
     def full_name(self):
         return f'{self.first_name} {self.last_name}'

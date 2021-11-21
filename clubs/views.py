@@ -10,7 +10,7 @@ def feed(request):
 
 def log_in(request):
     if request.method == 'POST':
-        form = LogInForm(request.POST)
+        form = LogInForm(data=request.POST)
         next = request.POST.get('next') or ''
         if form.is_valid():
             email = form.cleaned_data.get('email')
