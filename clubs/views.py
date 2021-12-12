@@ -8,6 +8,15 @@ def feed(request):
     return render(request, 'feed.html')
 
 def log_in(request):
+    if request.method == 'POST':
+        form = LogInForm(data=request.POST)
+        if form.is_valid():
+            email = form.cleaned_data.get('email')
+            password = form.cleaned_data.get('password')
+            user = authenticate(email=email, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('feed')
     form = LogInForm()
     return render(request, 'log_in.html', {'form': form})
 
