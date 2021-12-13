@@ -13,7 +13,7 @@ class SignUpForm(forms.ModelForm):
     class Meta:
         model = User
         exclude = ['username',]
-        fields = ['first_name', 'last_name', 'email', 'bio', 'experience_level', 'personal_statement', 'user_type']
+        fields = ['first_name', 'last_name', 'email', 'bio', 'experience_level', 'personal_statement',]
         widgets = {'bio': forms.Textarea(), 'personal_statement': forms.Textarea()}
     new_password = forms.CharField(
         label='Password',
@@ -46,7 +46,10 @@ class SignUpForm(forms.ModelForm):
             #email=self.cleaned_data.get('email'),
             bio=self.cleaned_data.get('bio'),
             experience_level=self.cleaned_data.get('experience_level'),
-            user_type=self.cleaned_data.get('user_type'),
+            #is_applicant=self.cleaned_data.get('is_applicant'),
+            #is_member=self.cleaned_data.get('is_member'),
+            #is_officer=self.cleaned_data.get('is_officer'),
+            #is_owner=self.cleaned_data.get('is_owner'),
             personal_statement=self.cleaned_data.get('personal_statement'),
             password=self.cleaned_data.get('new_password'),
         )

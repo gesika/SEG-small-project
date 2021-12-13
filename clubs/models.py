@@ -6,6 +6,13 @@ from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
 # Create your models here.
+Roles = (
+    ('applicant', 'APPLICANT'),
+    ('member', 'MEMBER'),
+    ('officer', 'OFFICER'),
+    ('owner', 'OWNER'),
+
+)
 class UserManager(BaseUserManager):
     def _create_user(self, email,password, is_staff, is_superuser, **extra_fields):
         now = timezone.now()
@@ -28,6 +35,7 @@ class UserManager(BaseUserManager):
     def create_superuser(self, email, password, **extra_fields):
         user = self._create_user(email, password, True, True, **extra_fields)
         return user
+    
 
 
 class User(AbstractUser):
@@ -43,15 +51,20 @@ class User(AbstractUser):
       (4, 'Advanced'),
       (5, 'Expert'),
     )
-    experience_level = models.PositiveSmallIntegerField(choices=EXPERIENCE_LEVEL_CHOICES)
+    experience_level = models.PositiveSmallIntegerField(choices=EXPERIENCE_LEVEL_CHOICES, null = True)
     personal_statement = models.CharField(max_length=520, blank=True)
-    USER_TYPE_CHOICES = (
+    is_applicant = models.BooleanField(default=True)
+    is_member = models.BooleanField(default=False)
+    is_officer = models.BooleanField(default=False)
+    is_owner = models.BooleanField(default=False)
+    
+    """USER_TYPE_CHOICES = (
       (1, 'Applicant'),
       (2, 'Member'),
       (3, 'Officer'),
       (4, 'Owner'),
     )
-    user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES)
+    user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES, null = True)"""
     
     """class Types(models.TextChoices):
         Applicant = "Applicant"
@@ -80,3 +93,17 @@ class User(AbstractUser):
     def get_short_name(self):
         """Return the email."""
         return self.email
+    
+    def get_member(self):
+        if self.is_member:
+            return True
+        else:
+            return False
+        
+class UserProfile(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE,    default=None, null=True)
+    role = models.CharField(max_length=50, choices=Roles, default='applicant')
+
+    
+    
+    
