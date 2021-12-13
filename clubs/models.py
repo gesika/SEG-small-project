@@ -29,6 +29,7 @@ class UserManager(BaseUserManager):
         user = self._create_user(email, password, True, True, **extra_fields)
         return user
 
+
 class User(AbstractUser):
     username = None
     first_name=models.CharField(max_length=50, blank = False)
@@ -51,6 +52,16 @@ class User(AbstractUser):
       (4, 'Owner'),
     )
     user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES)
+    
+    """class Types(models.TextChoices):
+        Applicant = "Applicant"
+        Member = "Member"
+        Officer = "Officer"
+        Owner = "Owner" 
+        
+    default_type = Types.Member
+        
+    type = models.CharField(max_length=255, choices=Types.choices, default=default_type)"""
     
     objects = UserManager()
     
