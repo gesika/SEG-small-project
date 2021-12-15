@@ -2,11 +2,15 @@
 
 ## Team members
 The members of the team are:
-- *Enter member 1*
-- *Enter member 2*
-- *Enter member 3*
-- *Enter member 4*
+- Asif Alam
+
 *Add any further information about the team here, such as absent team members.*
+- Asmah Abdi
+- Muhammad (Ifti) Iftikhar
+- Anqi (Jessi) Jin
+- Jules Roussel
+- Benjamin (Ben) Scheffer
+
 
 ## Project structure
 The project is called `system`.  It currently consists of a single app `clubs`.
