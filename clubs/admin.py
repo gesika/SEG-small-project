@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User, UserProfile
+from .models import User
 
 # Register your models here.
 
@@ -10,4 +10,3 @@ class UserAdmin(admin.ModelAdmin):
     ]
      list_display_links = ('email',)
 
-admin.site.register(UserProfile)

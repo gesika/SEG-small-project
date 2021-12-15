@@ -133,6 +133,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "clubs.User"
 
+LOGIN_URL = "log_in"
+
 MESSAGE_TAGS = {
     message_constants.DEBUG: 'dark',
     message_constants.DEBUG: 'danger',

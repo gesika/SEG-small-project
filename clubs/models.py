@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager, Permission
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
+from libgravatar import Gravatar
 
 # Create your models here.
 Roles = (
@@ -86,6 +87,9 @@ class User(AbstractUser):
         verbose_name = _('user')
         verbose_name_plural = _('users')
 
+    def full_name(self):
+        return f'{self.first_name} {self.last_name}'
+    
     def get_full_name(self):
         """Return the email."""
         return self.email
@@ -99,10 +103,18 @@ class User(AbstractUser):
             return True
         else:
             return False
+    
+    def gravatar(self, size=120):
+        """Return a URL to the user's gravatar."""
+        gravatar_object = Gravatar(self.email)
+        gravatar_url = gravatar_object.get_image(size=size, default='mp')
+        return gravatar_url
+    
+    def mini_gravatar(self):
+        """Return a URL to a miniature version of the user's gravatar."""
+        return self.gravatar(size=60)
+    
         
-class UserProfile(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE,    default=None, null=True)
-    role = models.CharField(max_length=50, choices=Roles, default='applicant')
 
     
     
